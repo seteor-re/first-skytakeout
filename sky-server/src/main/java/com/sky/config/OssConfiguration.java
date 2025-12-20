@@ -16,8 +16,8 @@ public class OssConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public AliOssUtil aliOssUtil(AliOssProperties aliOssProperties){
-        log.info("阿里云文件上传工具类:{}",aliOssProperties);
+    public AliOssUtil aliOssUtil(AliOssProperties aliOssProperties) {
+        log.info("阿里云文件上传工具类:{}", aliOssProperties);
         return new AliOssUtil(aliOssProperties.getEndpoint(),
                 aliOssProperties.getAccessKeyId(),
                 aliOssProperties.getAccessKeySecret(),
