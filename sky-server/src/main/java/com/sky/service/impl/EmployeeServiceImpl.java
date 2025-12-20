@@ -84,13 +84,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置账号的密码，默认为123456
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
-        //设置当前记录的创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-
-        //设置当前创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        //设置当前记录的创建时间和修改时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        //设置当前创建人id和修改人id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
 
@@ -98,6 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 分页查询
+     *
      * @param employeePageQueryDTO
      * @return
      */
@@ -116,6 +117,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 启用禁用员工账号
+     *
      * @param status
      * @param id
      */
@@ -125,6 +127,35 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .status(status)
                 .id(id)
                 .build();
+
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查询员工信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        employee.setPassword("****");
+        return employee;
+    }
+
+    /**
+     * 编辑员工信息
+     *
+     * @param employeeDTO
+     */
+    @Override
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }
