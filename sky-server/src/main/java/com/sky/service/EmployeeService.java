@@ -37,7 +37,7 @@ public interface EmployeeService {
      * @param status
      * @param id
      */
-    void startorstop(Integer status, Long id);
+    void startOrStop(Integer status, Long id);
 
     /**
      * 根据id查询员工信息
