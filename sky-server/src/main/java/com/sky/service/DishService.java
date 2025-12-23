@@ -61,10 +61,10 @@ public interface DishService {
 
     /**
      * 根据套餐id查询菜品
-     * @param categoryid
+     * @param categoryId
      * @return
      */
-    List<Dish> list(Long categoryid);
+    List<Dish> list(Long categoryId);
 
     /**
      * 条件查询菜品和口味

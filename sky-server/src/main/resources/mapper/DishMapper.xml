@@ -33,7 +33,7 @@
                 and d.name like concat('%',#{name},'%')
             </if>
             <if test="categoryId != null">
-                and d.category_id = c.id
+                and category_id = #{categoryId}
             </if>
             <if test="status != null">
                 and d.status = #{status}
@@ -41,6 +41,7 @@
         </where>
         order by d.create_time desc
     </select>
+
     <select id="list" resultType="com.sky.entity.Dish">
         select * from dish
         <where>

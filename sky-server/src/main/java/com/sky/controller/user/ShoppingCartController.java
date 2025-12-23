@@ -1,7 +1,6 @@
 package com.sky.controller.user;
 
 import com.sky.dto.ShoppingCartDTO;
-import com.sky.entity.Setmeal;
 import com.sky.entity.ShoppingCart;
 import com.sky.result.Result;
 import com.sky.service.ShoppingCartService;
@@ -46,7 +45,7 @@ public class ShoppingCartController {
     @ApiOperation("查看购物车")
     public Result<List<ShoppingCart>> list() {
         log.info("查看购物车");
-        List<ShoppingCart> list = shoppingCartService.showshoppingCart();
+        List<ShoppingCart> list = shoppingCartService.showShoppingCart();
         return Result.success(list);
     }
 
@@ -63,9 +62,14 @@ public class ShoppingCartController {
         return Result.success();
     }
 
+    /**
+     * 删除购物车的一个商品
+     * @param shoppingCartDTO
+     * @return
+     */
     @PostMapping("/sub")
     @ApiOperation("删除购物车的一个商品")
-    public Result delete(@PathVariable ShoppingCartDTO shoppingCartDTO) {
+    public Result delete(@RequestBody ShoppingCartDTO shoppingCartDTO) {
         log.info("删除购物车的一个商品,{}", shoppingCartDTO);
         shoppingCartService.delete(shoppingCartDTO);
         return Result.success();
